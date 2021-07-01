@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="mb-3">{{ text }}</h2>
+{% if name == 'visitante' %}
+<p>Preencha o formulário para que possamos nos conhecer: </p>
+<form method="post" class="form-validate container" novalidate autocomplete="off">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label for="nome">
+      Nome:
+    </label>
+    <input type="text" name="nome" id="nome" required maxlength="20" minlength="3" class="form-control"/>
+  </div>
+  <input type="submit" class="btn btn-primary" id="submit" value="Enviar" />
+</form>
+{% endif %}
+{% endblock %}
