@@ -1,0 +1,32 @@
+{% extends "../base.html" %}
+
+{% load account %}
+
+{% block title %}Confirmar e-mail{% endblock %}
+
+
+{% block content %}
+<h2>Confirmar e-mail</h2>
+
+{% if confirmation %}
+
+{% user_display confirmation.email_address.user as user_display %}
+
+<p>Por favor, confirme apenas se <a href="mailto:{{ confirmation.email_address.email }}">{{ confirmation.email_address.email }}</a> for o endereço de email de {{ user_display }}.</p>
+
+<form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+    {% csrf_token %}
+    <div class="text-center">
+      <button type="submit" class="btn btn-secondary">Confirmar</button>
+    </div>
+</form>
+
+{% else %}
+
+{% url 'account_email' as email_url %}
+
+<p>Este link de confirmação de e-mail expirou ou é inválido. Você pode solicitar um novo e-mail de confirmação ou alterá-lo <a href="{{ email_url }}">clicando aqui</a>.</p>
+
+{% endif %}
+
+{% endblock %}

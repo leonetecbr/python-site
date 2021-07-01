@@ -136,7 +136,11 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SITE_ID = 1
-
-LOGIN_REDIRECT_URL = "/"
-
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
+LOGIN_REDIRECT_URL = "/conta"
+ACCOUNT_LOGOUT_REDIRECT_URL ='/login'
+ACCOUNT_FORMS = {
+'signup': 'users.forms.CustomSignupForm',
+}
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+ACCOUNT_USERNAME_MIN_LENGTH = 3

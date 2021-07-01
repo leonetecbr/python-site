@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <article>
+  <h2 class="mb-3">Conta</h2>
+  <h4 class="text-center mb-3">Seus dados</h4>
+  <div class="border p-3 mb-3">
+  <p><b>Nome:</b> {{ user.first_name }}</p>
+  <p><b>Nome de usuário:</b> {{ user.username }}</p>
+  <p><b>E-mail:</b> {% if user.email %}{{ user.email }}{% else %}<i>Não definido</i>{% endif %}</p>
+  </div>
+  <h4 class="text-center mb-3">Ações</h4>
+  <div class="d-flex justify-content-center flex-wrap fs-4">
+    <div class="bg-secondary bd-highlight p-2"><a href="{% url 'account_email' %}"><i class="bi bi-envelope-fill"></i> Alterar e-mail</a></div>
+    <div class="bg-secondary bd-highlight p-2"><a href="{% url 'account_change_password' %}"><i class="bi bi-lock-fill"></i> Alterar senha</a></div>
+    <div class="bg-secondary bd-highlight p-2"><a href="{% url 'account_logout' %}"><i class="bi bi-box-arrow-right"></i> Sair da conta</a></div>
+  </div>
+</article>
+{% endblock %}
+
+{% block head_plus %}
+<style>
+.d-flex div{margin-bottom:15px;margin-right:15px; padding: 5px 8px;width:47%;border-radius:6px;}
+.d-flex div:nth-child(2n){margin-right:0;}
+.d-flex div a{color:#fff;text-decoration: none;}
+</style>
+{% endblock %}

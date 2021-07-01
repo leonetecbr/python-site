@@ -4,32 +4,50 @@
 
 {% block content %}
     <h2>Cadastrar</h2>
-    <div class="text-center mt-3 text-muted">
-      <p>Já tem uma conta? Por favor <a href="/login" class="text-muted">entre</a>.</p>
-    </div>
+    {% if form.errors %}
+      {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger" role="alert">{{ error|escape }}
+            </div>
+        {% endfor %}
+      {% endfor %}
+      {% for error in form.non_field_errors %}
+        <div class="alert alert-danger" role="alert">{{ error|escape }}
+        </div>
+      {% endfor %}
+    {% endif %}
     <form method="post" class="container needs-validation" novalidate autocomplete="off">
       {% csrf_token %}
       <div class="mb-3">
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username" class="form-control" required/>
-        <div class="invalid-feedback text-center">Campo obrigatório!</div>
+        <label for="username">Nome de usuário:</label>
+        <input type="text" name="username" id="username" class="form-control" required placeholder="Crie um nome de usuário ..." {% if form.username.value  %} value="{{ form.username.value }}" {% endif %} minlength="3"/>
+        <div class="invalid-feedback text-center">Campo obrigatório! Mínimo de 3 caracteres!</div>
       </div>
       <div class="mb-3">
-        <label for="email">Email (opcional):</label>
-        <input type="text" name="email" id="email" class="form-control"/>
+        <label for="first_name">Nome:</label>
+        <input type="text" name="first_name" id="first_name" class="form-control" required placeholder="Digite seu nome ..." maxlength="20" {% if form.first_name.value  %} value="{{ form.first_name.value }}" {% endif %}/>
+        <div class="invalid-feedback text-center">Campo obrigatório, máximo 20 caracteres!</div>
+      </div>
+      <div class="mb-3">
+        <label for="email">E-mail:</label>
+        <input type="text" name="email" id="email" class="form-control" placeholder="Digite seu email ..." maxlength="100" {% if form.email.value  %} value="{{ form.email.value }}" {% endif %}/>
+        <div class="small form-text">E-mail não é obrigatório, mas nescessário caso você esqueça sua senha.</div>
+        <div class="invalid-feedback text-center">Digite um e-mail válido!</div>
       </div>
       <div class="mb-3">
         <label for="password1">Senha:</label>
-        <input type="password" name="password1" id="password1" class="form-control" required/>
+        <input type="password" name="password1" id="password1" class="form-control" required placeholder="Crie uma senha ..."/>
         <div class="invalid-feedback text-center">Campo obrigatório!</div>
       </div>
-      <div class="mb-3">
-        <label for="password2">Reescreva a senha:</label>
-        <input type="password" name="password2" id="password2" class="form-control" required/>
-        <div class="invalid-feedback text-center">Campo obrigatório!</div>
-      </div>
+      {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
       <div class="text-center">
         <button class="btn btn-secondary" type="submit">Cadastrar</button>
       </div>
     </form>
+    <div class="text-center">
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="{% url 'account_login' %}">Já é cadastrado? Clique aqui</a>
+    </div>
 {% endblock %}
