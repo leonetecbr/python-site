@@ -1,0 +1,26 @@
+{% extends '../base.html' %}
+
+{% block title %}Entrar{% endblock %}
+
+{% block content %}
+    <h2>Entrar</h2>
+    <div class="text-center mt-3 text-muted">
+      <p>Ainda não tem uma conta? Por favor <a href="/signup" class="text-muted">cadastre-se</a>.</p>
+    </div>
+    <form method="post" class="container mt-3 needs-validation" novalidate autocomplete="off">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="login" class="form-label">Username:</label>
+        <input type="text" name="login" id="login" class="form-control" required/>
+        <div class="invalid-feedback text-center">Campo obrigatório!</div>
+      </div>
+      <div class="mb-3">
+        <label for="password">Senha:</label>
+        <input type="password" name="password" id="password" class="form-control" required/>
+        <div class="invalid-feedback text-center">Campo obrigatório!</div>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-secondary" type="submit">Entrar</button>
+      </div>
+    </form>
+{% endblock %}
