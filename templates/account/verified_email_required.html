@@ -1,0 +1,16 @@
+{% extends "../base.html" %}
+
+{% block title %}Verifique seu e-mail{% endblock %}
+
+{% block content %}
+    <h2>Verifique seu e-mail</h2>
+    
+    {% url 'account_email' as email_url %}
+    
+    <p class="mt-3">Esta parte do site exige que verifiquemos se
+    você é quem afirma ser. Para este propósito, exigimos que você verifique a propriedade do seu endereço de e-mail.</p>
+    
+    <p>Enviamos um e-mail para você para verificação. Clique no link dentro do email.</p>
+    
+    <p><strong>Importante:</strong> Você ainda pode <a href="{{ email_url }}">alterar seu endereço de e-mail</a>.</p>
+{% endblock %}

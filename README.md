@@ -11,3 +11,5 @@ Caso você queira rodar esse projeto na sua máquina você vai precisar dos segu
 ```Django```
 
 ```django-allauth```
+
+```decouple```

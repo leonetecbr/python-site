@@ -24,17 +24,17 @@
         <div class="invalid-feedback text-center">Campo obrigatório! Mínimo de 3 caracteres!</div>
       </div>
       <div class="mb-3">
-        <label for="password">Senha:</label>
+        <label for="password" class="form-label">Senha:</label>
         <input type="password" name="password" id="password" class="form-control" required placeholder="Digite sua senha ..."/>
         <div class="invalid-feedback text-center">Campo obrigatório!</div>
       </div>
       <div class="form-check">
-        <input type="checkbox" name="remember" id="remember"{% if form.remember.value  %} checked {% endif %}class="form-check-input"/> <label for="remember" class="form-check-lavel">Continuar logado</label>
+        <input type="checkbox" name="remember" id="remember"{% if form.remember.value  %} checked {% endif %}class="form-check-input"/> <label for="remember" class="form-check-label">Continuar logado</label>
       </div>
       {% if redirect_field_value %}
         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
       {% endif %}
-      <div class="text-center">
+      <div class="text-center mt-2">
         <button class="btn btn-secondary" type="submit">Entrar</button>
       </div>
     </form>
